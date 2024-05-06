@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "node": "pnpm hardhat node",
-    "test": "pnpm hardhat test --network localhost",
-    "deploy": "pnpm hardhat deploy ./ignition/modules/Celular.ts --network localhost"
+    "test-contract": "pnpm hardhat test --network localhost",
+    "deploy-contract": "pnpm hardhat ignition deploy ./ignition/modules/Celular.ts --network localhost"
   },
   "keywords": [],
   "author": "",
