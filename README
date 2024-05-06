@@ -1,0 +1,7 @@
+# HOW TO RUN
+
+1. Install packages in server folder
+2. Run "npm run node"
+3. In a separate terminal, run "npm run deploy-contract"
+4. Install packages in client folder
+5. Run "npm run dev"
