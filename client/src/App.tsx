@@ -9,11 +9,7 @@ import Btn from "./components/Btn";
 import { contractState } from "./atom/contractState";
 import { providerState } from "./atom/providerState";
 
-interface CelularI {
-  id: String;
-  marca: String;
-  modelo: String;
-}
+import type { CelularI } from "./types/interfaces";
 
 function App() {
   const [provider, setProvider] = useRecoilState(providerState);

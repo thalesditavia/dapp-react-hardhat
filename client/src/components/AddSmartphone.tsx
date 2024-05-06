@@ -5,25 +5,22 @@ import SmartphoneForm from "./SmartphoneForm";
 import { contractState } from "../atom/contractState";
 import { providerState } from "../atom/providerState";
 
-interface FormInputsI {
-  marca: string;
-  modelo: string;
-}
+import type { FormInputsI } from "../types/interfaces";
 
 function AddSmartphoneView() {
   const [contract] = useRecoilState(contractState);
   const [provider] = useRecoilState(providerState);
 
-  async function isPending(txHash: string) {
+  const txIsPending = async (txHash: string) => {
     return (await provider?.getTransactionReceipt(txHash)) == null;
-  }
+  };
 
   const addSmartphones = async ({ marca, modelo }: FormInputsI) => {
     if (contract) {
       try {
-        const transaction = await contract.adicionaCelular(marca, modelo);
-        const transactionHash = (await transaction.wait()).hash as string;
-        const pending = await isPending(transactionHash);
+        const tx = await contract.adicionaCelular(marca, modelo);
+        const txHash = (await tx.wait()).hash as string;
+        const pending = await txIsPending(txHash);
 
         if (pending) {
           return "Pending";

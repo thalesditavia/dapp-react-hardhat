@@ -1,7 +1,4 @@
-interface AlertModalI {
-  modalType: string;
-  children: React.ReactNode;
-}
+import type { AlertModalI } from "../types/interfaces";
 
 function AlertModal({ modalType, children }: AlertModalI) {
   return (

@@ -8,14 +8,7 @@ import BtnModal from "./BtnModal";
 
 import { smartphoneFormSchema } from "../validators/smartphoneForm";
 
-interface SmartphoneFormI {
-  onSubmitAction: Function;
-}
-
-interface FormInputsI {
-  marca: string;
-  modelo: string;
-}
+import type { SmartphoneFormI, FormInputsI } from "../types/interfaces";
 
 const SmartphoneForm = ({ onSubmitAction }: SmartphoneFormI) => {
   const {
@@ -31,14 +24,14 @@ const SmartphoneForm = ({ onSubmitAction }: SmartphoneFormI) => {
   const [successModal, setSuccessModal] = useState(false);
 
   const onSubmit: SubmitHandler<FormInputsI> = async (data) => {
-    const funcResult = await onSubmitAction(data);
+    const txResult = await onSubmitAction(data);
 
-    if (funcResult === "Pending") {
-      setTransactionPending(funcResult);
-    } else if (funcResult === "Success") {
+    if (txResult === "Pending") {
+      setTransactionPending(txResult);
+    } else if (txResult === "Success") {
       setSuccessModal(true);
     } else {
-      setTransactionError(funcResult);
+      setTransactionError(txResult);
     }
 
     reset();

@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body,
+#root {
+  @apply h-full w-full text-slate-950 bg-slate-200;
+  font-family: "Poppins", sans-serif;
+}
+
+#root {
+  @apply flex justify-center items-center flex-wrap;
+}
+
+table,
+th,
+td {
+  @apply border-slate-700 border-2 border-collapse;
+}
+
+td {
+  @apply p-6;
+}
+
+tr:nth-child(odd) {
+  @apply bg-slate-300;
+}
+
+tr:nth-child(even) {
+  @apply bg-slate-200;
+}
+
+th {
+  @apply bg-slate-500 p-2;
+}
+
+form input {
+  @apply ml-3 border-2 border-slate-900 bg-slate-200 py-1;
+}
+
+form input:focus {
+  @apply bg-slate-300 outline-0;
+}
+
+form span {
+  @apply block text-sm text-red-500;
+}

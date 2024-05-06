@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 
-interface BtnI {
-  isLink?: boolean;
-  to?: string;
-  btnType?: "submit" | "reset" | "button" | undefined;
-  children: React.ReactNode;
-}
+import type { BtnI } from "../types/interfaces";
 
 function Btn({ isLink, to, btnType, children }: BtnI) {
   return isLink && to ? (

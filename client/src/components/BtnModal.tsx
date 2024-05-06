@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 
-interface BtnModalI {
-  isLink: boolean;
-  to?: string;
-  btnFunc?: () => void;
-  children: React.ReactNode;
-}
+import type { BtnModalI } from "../types/interfaces";
 
 function BtnModal({ isLink, to, btnFunc, children }: BtnModalI) {
   return isLink && to ? (
