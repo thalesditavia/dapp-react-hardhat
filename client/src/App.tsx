@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
-import { ethers, BrowserProvider, Contract } from "ethers";
+import { ethers } from "ethers";
+import { useRecoilState } from "recoil";
+
+import type { BrowserProvider } from "ethers";
 
 import CelularContrato from "../../server/artifacts/contracts/Celular.sol/Celular.json";
 
 import Btn from "./components/Btn";
+
+import { contractState } from "./atom/contractState";
 
 interface CelularI {
   id: String;
@@ -13,7 +18,7 @@ interface CelularI {
 
 function App() {
   const [provider, setProvider] = useState<null | BrowserProvider>(null);
-  const [contract, setContract] = useState<null | Contract>(null);
+  const [contract, setContract] = useRecoilState(contractState);
 
   const [smartphones, setSmarphones] = useState<CelularI[]>([]);
 
@@ -62,6 +67,7 @@ function App() {
   }, [provider]);
 
   useEffect(() => {
+    console.log(contract);
     fetchSmartphones();
   }, [contract]);
   //   if (contract) {
