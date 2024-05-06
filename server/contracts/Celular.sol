@@ -8,12 +8,15 @@ contract Celular {
         string modelo;
     }
 
-    NovoCelular[] public celulares;
+    NovoCelular[] private celulares;
 
     function adicionaCelular(
-        string memory _marca,
-        string memory _modelo
+        string calldata _marca,
+        string calldata _modelo
     ) external {
+        require(bytes(_marca).length != 0, "Voce precisa colocar a marca");
+        require(bytes(_modelo).length != 0, "Voce precisa colocar o modelo");
+
         uint celularId = celulares.length;
         celulares.push(NovoCelular(celularId, _marca, _modelo));
     }
