@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { useRecoilState } from "recoil";
 
-import type { BrowserProvider } from "ethers";
-
 import CelularContrato from "../../server/artifacts/contracts/Celular.sol/Celular.json";
 
 import Btn from "./components/Btn";
 
 import { contractState } from "./atom/contractState";
+import { providerState } from "./atom/providerState";
 
 interface CelularI {
   id: String;
@@ -17,7 +16,7 @@ interface CelularI {
 }
 
 function App() {
-  const [provider, setProvider] = useState<null | BrowserProvider>(null);
+  const [provider, setProvider] = useRecoilState(providerState);
   const [contract, setContract] = useRecoilState(contractState);
 
   const [smartphones, setSmarphones] = useState<CelularI[]>([]);
@@ -35,7 +34,7 @@ function App() {
     if (provider) {
       const signer = await provider.getSigner();
       const ContractFactory = new ethers.Contract(
-        "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+        "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318",
         CelularContrato.abi,
         signer
       );
@@ -67,7 +66,6 @@ function App() {
   }, [provider]);
 
   useEffect(() => {
-    console.log(contract);
     fetchSmartphones();
   }, [contract]);
   //   if (contract) {
@@ -111,8 +109,8 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              {smartphones.map(({ id, marca, modelo }) => (
-                <tr>
+              {smartphones.map(({ marca, modelo }, i) => (
+                <tr key={i}>
                   <td>{marca}</td>
                   <td>{modelo}</td>
                 </tr>
